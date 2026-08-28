@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-cream: #F5F2EB;
+  --color-brand-ivory: #F5F2EB;
+  --color-brand-beige: #F5F2EB;
+  --color-brand-charcoal: #121212;
+  --color-brand-softBlack: #121212;
+  --color-brand-black: #121212;
+  --color-brand-brown: #121212;
+  --color-brand-darkBrown: #121212;
+  --color-brand-olive: #121212;
+
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Custom styles for luxury bistro atmosphere */
+.glass-nav {
+  background: rgba(245, 242, 235, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.font-serif-title {
+  font-family: var(--font-serif);
+}
+
+/* Hide scrollbar completely across all browsers and elements */
+html,
+body {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+/* Hide scrollbar utility class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
