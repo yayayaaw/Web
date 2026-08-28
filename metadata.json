@@ -1,0 +1,6 @@
+{
+  "name": "Élysée Café & Bistro",
+  "description": "Website resmi Élysée Café & Bistro dengan arsitektur multi-halaman khusus, halaman karir & lowongan kerja interaktif, menu digital, galeri foto, reservasi meja, dan pemesanan WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
