@@ -1,0 +1,72 @@
+// Taruh file ini di: src/admin/tabs/PhilosophyTab.tsx
+import React, { useState } from 'react';
+import { getContent, setContent, PhilosophyCard } from '../../lib/contentStore';
+import { ImagePicker } from '../components/ImagePicker';
+
+export function PhilosophyTab() {
+  const [cards, setCards] = useState<PhilosophyCard[]>(() => getContent().philosophyCards);
+
+  function updateCard(id: string, patch: Partial<PhilosophyCard>) {
+    setCards(prev => prev.map(c => (c.id === id ? { ...c, ...patch } : c)));
+  }
+
+  function handleSaveAll() {
+    setContent('philosophyCards', cards);
+    alert('3 kartu "Ketelitian dalam Tiap Seduhan" berhasil disimpan!');
+  }
+
+  return (
+    <section className="space-y-6">
+      <div className="flex items-center justify-between bg-white p-4 rounded-2xl border border-[#F4EFE6] shadow-sm">
+        <div>
+          <h3 className="text-2xl font-bold text-[#1A1A1A]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
+            Filosofi Kami (Craft & Philosophy)
+          </h3>
+          <p className="text-xs text-gray-500">3 kartu di section "Ketelitian dalam Tiap Seduhan" homepage.</p>
+        </div>
+        <button onClick={handleSaveAll} className="bg-emerald-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl hover:bg-emerald-800 shrink-0">
+          Simpan Semua
+        </button>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {cards.map((card, idx) => (
+          <div key={card.id} className="bg-white p-5 rounded-2xl border border-[#F4EFE6] shadow-sm space-y-3">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#6F4E37]">Kartu #{idx + 1}</span>
+            <ImagePicker
+              label="Foto"
+              value={card.image}
+              onChange={url => updateCard(card.id, { image: url })}
+              aspectRatio="4/3"
+            />
+            <div>
+              <label className="block font-semibold mb-1 text-xs">Tag/Badge</label>
+              <input
+                className="w-full px-3 py-2.5 rounded-xl border border-[#F4EFE6] bg-[#FDFBF7] outline-none text-xs"
+                value={card.tag}
+                onChange={e => updateCard(card.id, { tag: e.target.value })}
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1 text-xs">Judul</label>
+              <input
+                className="w-full px-3 py-2.5 rounded-xl border border-[#F4EFE6] bg-[#FDFBF7] outline-none text-xs"
+                value={card.title}
+                onChange={e => updateCard(card.id, { title: e.target.value })}
+              />
+            </div>
+            <div>
+              <label className="block font-semibold mb-1 text-xs">Deskripsi</label>
+              <textarea
+                rows={2}
+                className="w-full px-3 py-2.5 rounded-xl border border-[#F4EFE6] bg-[#FDFBF7] outline-none text-xs"
+                value={card.description}
+                onChange={e => updateCard(card.id, { description: e.target.value })}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
